@@ -51,7 +51,7 @@ onMounted(async () => {
             <el-option v-for="item in props.chartIndex" :key="item.softName" :label="item.softName" :value="item" />
         </el-select>
 
-        <el-select v-model="dataCollection.moduleValue" class="m-1" placeholder="Select" size="large">
+        <el-select v-model="dataCollection.moduleValue" class="m-1" placeholder="Select" size="large" value-key="moduleCode">
             <el-option v-for="item in dataCollection.softValue.modules" :key="item.moduleName" :label="item.moduleName"
                 @change="methods.onModuleChange" :value="item" />
         </el-select>
