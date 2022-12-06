@@ -1,10 +1,9 @@
 <script  setup>
 import { ref, onMounted, inject, reactive } from 'vue'
 import MenuList from './MenuList.vue';
-import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 
 
-const menu = inject("$menu");
+const menuApi = inject("$menuApi");
 
 const dataCollection = reactive(
   {
@@ -15,7 +14,7 @@ const dataCollection = reactive(
 const methods = {
   async getMenuItem() {
     console.log('SideBar.getMenuItem');
-    await menu.getMenuItem()
+    await menuApi.getMenuItem()
       .then((res) => {
         console.log(res)
         for (var i = 0; i < res.length; i++) {
@@ -57,7 +56,11 @@ onMounted(async () => {
             </el-icon>Navigator One
           </template>
           <router-link to="/chartShow">
-            <el-menu-item index="1-1">数据展示</el-menu-item>
+            <el-menu-item index="1-1">
+              <el-icon>
+                <TrendCharts />
+              </el-icon>数据展示
+            </el-menu-item>
           </router-link>
           <el-sub-menu index="1-4">
             <template #title>Option4</template>
@@ -67,7 +70,7 @@ onMounted(async () => {
         <el-sub-menu index="2">
           <template #title>
             <el-icon>
-              <icon-menu />
+              <Menu />
             </el-icon>Navigator Two
           </template>
           <el-menu-item-group>

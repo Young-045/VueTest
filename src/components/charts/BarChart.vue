@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, inject } from 'vue';
+import { onMounted, inject, watch } from 'vue';
 const props = defineProps({
     xAxisData: {
         type: Array,
@@ -11,11 +11,16 @@ const props = defineProps({
     }
 });
 
+watch(props, (newProps) => {
+    methods.RefreshData()
+});
+
 const echarts = inject("$echarts");
+let barChart;
 
 const methods = {
     async barChartInit() {
-        var chart = echarts.init(document.getElementById('barMain'));
+        barChart = echarts.init(document.getElementById('barMain'));
         let option = {
             xAxis: {
                 type: 'category',
@@ -27,10 +32,20 @@ const methods = {
             }, //X轴
             yAxis: { type: 'value' }, //Y轴
             series: [{ data: props.seriesData, type: 'bar' }],
+            tooltip: {
+                trigger: 'item',
+                formatter: "{b}: {c}"//模板变量有 {a}、{b}、{c}、{d}，分别表示系列名，数据名，数据值，百分比。
+            },
         };
-        chart.setOption(option);
+        barChart.setOption(option);
     },
-
+    RefreshData() {
+        var option = barChart.getOption();
+        option.series[0].data = props.seriesData;
+        option.xAxis[0  ].data = props.xAxisData;
+        barChart.setOption(option);
+        console.log('BarChartRefreshData')
+    },
 }
 
 onMounted(() => {
@@ -41,10 +56,13 @@ onMounted(() => {
 </script>
 
 <template>
-    <div id="barMain"></div>
+    <div id="barMain" class="barClass"></div>
 
 </template>
 
 <style scoped>
-
+.barClass {
+    width: 100%;
+    height: 100%;
+}
 </style>

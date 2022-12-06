@@ -9,27 +9,36 @@ onMounted(async () => {
 </script>
 
 <template>
+    <el-container>
 
-  <el-container>
-    <el-aside width="200px">
-      <SideBar class="sideBar"></SideBar>
-    </el-aside>
-    <el-main class="content">
-      <router-view></router-view>
-    </el-main>
-  </el-container>
+      <el-aside width="200px" >
+        <SideBar class="sideBar"></SideBar>
+      </el-aside>
+
+      <el-container>
+        <el-main class="content">
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+
+    </el-container>
 
 </template>
 
 
 
 <style scoped>
+
+.common-layout{
+  height: 100vh;
+}
 .content {
-  display: grid;
+  height: 100vh;
   margin-right: 50px;
 }
 
 .sideBar {
-  height: 100%;
+  height: 100vh;
+  
 }
 </style>

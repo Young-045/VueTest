@@ -5,7 +5,7 @@ import { ref, onMounted, inject, reactive } from 'vue'
 const dataCollection = reactive(
     {
         softValue: {},
-        moduleValue:  {},
+        moduleValue: {},
         isDataLoaded: false,
     });
 
@@ -15,6 +15,8 @@ const props = defineProps({
         default: () => []
     },
 });
+
+defineExpose({ dataCollection })
 
 const methods = {
     chartFilterInit() {
@@ -31,7 +33,7 @@ const methods = {
     },
 
     onModuleChange(item) {
-        //console.log(dataCollection.moduleValue)
+        console.log(dataCollection.moduleValue)
     }
 }
 
@@ -45,40 +47,31 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div class="content" v-if="dataCollection.isDataLoaded">
-        <el-select v-model="dataCollection.softValue" class="m-0" placeholder="Select" size="large" value-key="softCode"
-            @change="methods.onSoftChange">
-            <el-option v-for="item in props.chartIndex" :key="item.softName" :label="item.softName" :value="item" />
-        </el-select>
 
-        <el-select v-model="dataCollection.moduleValue" class="m-1" placeholder="Select" size="large" value-key="moduleCode">
-            <el-option v-for="item in dataCollection.softValue.modules" :key="item.moduleName" :label="item.moduleName"
-                @change="methods.onModuleChange" :value="item" />
-        </el-select>
+    <el-row v-if="dataCollection.isDataLoaded" :gutter="20">
+        <el-col :span="12">
+            <el-select v-model="dataCollection.softValue" class="m-0" placeholder="Select" size="large"
+                value-key="softCode" @change="methods.onSoftChange">
+                <el-option v-for="item in props.chartIndex" :key="item.softName" :label="item.softName" :value="item" />
+            </el-select>
+        </el-col>
+        <el-col :span="12">
+            <el-select v-model="dataCollection.moduleValue" class="m-1" placeholder="Select" size="large"
+                value-key="moduleCode">
+                <el-option v-for="item in dataCollection.softValue.modules" :key="item.moduleName"
+                    :label="item.moduleName" @change="methods.onModuleChange" :value="item" />
+            </el-select>
+        </el-col>
+    </el-row>
 
-        <!-- <el-select v-model="value" class="m-2" placeholder="Select" size="large">
-            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" />
-        </el-select> -->
-
-    </div>
 </template>
 
 <style scoped>
-.content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 50px;
-}
-
 .m-0 {
-    grid-column: 1;
+    width: 100%;
 }
 
 .m-1 {
-    grid-column: 2;
-}
-
-.m-2 {
-    grid-column: 3;
+    width: 100%;
 }
 </style>

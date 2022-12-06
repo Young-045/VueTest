@@ -20,7 +20,4 @@ a,
     place-items: center;
   }
 
-  #app {
-    display: grid;
-  }
 }
