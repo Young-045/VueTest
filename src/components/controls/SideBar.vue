@@ -59,7 +59,14 @@ onMounted(async () => {
             <el-menu-item index="1-1">
               <el-icon>
                 <TrendCharts />
-              </el-icon>数据展示
+              </el-icon>ChartShow
+            </el-menu-item>
+          </router-link>
+          <router-link to="/dataShow">
+            <el-menu-item index="1-2">
+              <el-icon>
+                <Grid />
+              </el-icon>DataShow
             </el-menu-item>
           </router-link>
           <el-sub-menu index="1-4">

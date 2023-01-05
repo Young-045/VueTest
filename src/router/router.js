@@ -1,6 +1,7 @@
 //router文件夹下新建index.js文件
 import { createRouter, createWebHistory } from 'vue-router'
 import ChartShow from '../components/views/ChartShow.vue'
+import DataShow from '../components/views/DataShow.vue'
 
 //注册路由
 const routes = [
@@ -9,11 +10,16 @@ const routes = [
         name: 'chartShow',
         component: ChartShow
     },
-   
+    {
+        path: '/dataShow',
+        name: 'dataShow',
+        component: DataShow
+    },
+
 ];
 const router = createRouter({
-// createWebHashHistory()是使用hash模式路由
-// createWebHistory()是使用history模式路由
+    // createWebHashHistory()是使用hash模式路由
+    // createWebHistory()是使用history模式路由
     history: createWebHistory(),
     routes
 });
@@ -28,7 +34,7 @@ const router = createRouter({
 // })
 
 // router.afterEach((to,from)=>{
-	
+
 // })
 
 export default router;

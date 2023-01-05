@@ -3,6 +3,7 @@ import App from './App.vue'
 import './assets/main.css'
 import chart from './api/chart';
 import menu from './api/menu';
+import weather from './api/weather';
 import * as echarts from 'echarts';
 import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
@@ -20,5 +21,6 @@ app.use(router);
 app.provide('$echarts',echarts);
 app.provide('$chartApi',chart);
 app.provide('$menuApi',menu);
+app.provide('$weatherApi',weather);
 
 app.mount('#app')
