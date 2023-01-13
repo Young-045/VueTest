@@ -54,7 +54,7 @@
 			"detail": "npm-watch"
 		},
 		{
-			"label": "Terminate All Tasks",
+			"label": "TerminateAllTasks",
 			"command": "echo ${input:terminate}",
 			"type": "shell",
 			"problemMatcher": []

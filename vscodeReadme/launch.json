@@ -12,7 +12,7 @@
             // "webRoot": "${workspaceFolder}"
             "webRoot": "${workspaceFolder}/src",
             "preLaunchTask": "npm: dev",
-            "postDebugTask":"Terminate All Tasks"
+            "postDebugTask":"TerminateAllTasks"
         },
         
     ],

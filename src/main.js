@@ -9,6 +9,7 @@ import ElementPlus from 'element-plus'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'element-plus/dist/index.css'
 import router from './router/router'
+import auth from './api/auth'
 
 const app = createApp(App)
 
@@ -22,5 +23,6 @@ app.provide('$echarts',echarts);
 app.provide('$chartApi',chart);
 app.provide('$menuApi',menu);
 app.provide('$weatherApi',weather);
+app.provide('$authApi',auth);
 
 app.mount('#app')

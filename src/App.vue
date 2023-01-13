@@ -4,25 +4,42 @@ import { ref, onMounted, inject, reactive } from 'vue'
 import { store } from './store/store.js'
 
 const weatherApi = inject("$weatherApi");
+const authApi = inject("$authApi");
+
 const methods = {
   getWeatherData() {
     var weatherStr = localStorage.getItem("weather");
     if (weatherStr == null || weatherStr === '') {
       console.log('localStorage无数据');
       weatherStr = weatherApi.getWeatherData();
+      localStorage.setItem("weather", weatherStr);
     }
     else {
       console.log('localStorage成功获取数据');
     }
     var weather = JSON.parse(weatherStr);
-    console.log('App.vue.getWeatherData---', weather);
     store.weather = weather;
-    localStorage.setItem("weather", JSON.stringify(weather));
   },
+  async getAuthToken() {
+    var tokenStr = sessionStorage.getItem("token");
+    var token = {};
+    if (tokenStr == null || tokenStr === '') {
+      console.log('sessionStorage无token数据');
+      token = await authApi.getAuthToken();
+      localStorage.setItem("token", JSON.stringify(token));
+    }
+    else {
+      token = JSON.parse(tokenStr);
+      console.log('sessionStorage成功获取token数据');
+    }
+    console.log('token',token);
+    store.tokenObject = token;
+  }
 }
 
 onMounted(() => {
   console.log('App.vue---onMounted---');
+  methods.getAuthToken();
   methods.getWeatherData();
 })
 

@@ -6,13 +6,14 @@ import axios from 'axios'
 // let vm = new Vue();
  
 const instance = axios.create({
-  baseURL: 'https://localhost:7103',
+  //baseURL: 'https://localhost:7103',
+  //baseURL: 'https://47.98.227.73:7103',
   timeout: 3000,
-  // headers: {
-  //   post: {
-  //     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-  //   }
-  // }
+  headers: {
+    post: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
 })
  
 // 请求拦截
